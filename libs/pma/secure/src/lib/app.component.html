@@ -1,6 +1,5 @@
 
-<!-- <router-outlet></router-outlet> -->
-<div>
+<div *ngIf="(secureState$ | async)?.hasLoaded">
     <div class="header">
       <mat-toolbar color="primary">
         <mat-toolbar-row>
@@ -21,7 +20,7 @@
                 <div class="notification">
                 </div>
                 <div>
-                  <pma-avatar [user]="(authState$ | async).user" (signOut)="onSignOut()"></pma-avatar>
+                  <pma-avatar [user]="(authState$ | async)?.user" (signOut)="onSignOut()"></pma-avatar>
                 </div>
               </div>
             </div>
@@ -33,7 +32,7 @@
       <mat-drawer-container autosize>
         <mat-drawer #drawer mode="side">
               <mat-list>
-                <mat-list-item  *ngFor="let menuItem of (secureState$ | async).menu">
+                <mat-list-item  *ngFor="let menuItem of (secureState$ | async)?.menu">
                     <mat-icon fontSet="fas" fontIcon="{{menuItem.icon}}"></mat-icon>
                     <button  [routerLink]="menuItem.route" *ngIf="menuItem.featureFlag" type="button" mat-button
                     [color]="menuItem.selectedClass" (click)="onClickMenuItem(drawer, menuItem)">

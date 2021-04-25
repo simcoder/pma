@@ -18,6 +18,7 @@ export class LoginComponent  {
     private store: Store<any>
   ) {}
   onSuccess(user: any) {
+    debugger;
     this.store.dispatch(new UserLoginSuccess(user))
     this.router.navigate(["secure"]);
   }

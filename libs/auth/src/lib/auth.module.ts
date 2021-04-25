@@ -13,6 +13,8 @@ import { StoreModule } from '@ngrx/store';
 import { authReducer } from './data/store';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './data/store/effects/auth.effects';
 export function firebaseAppNameFactory() {
   return `goc`;
 }
@@ -43,7 +45,8 @@ export const routes: Route[] = [
       }
     ),
 
-    StoreModule.forFeature('auth', authReducer)
+    StoreModule.forFeature('auth', authReducer),
+    EffectsModule.forFeature([AuthEffects])
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers:[AngularFireAuth],

@@ -21,6 +21,9 @@ export class AppComponent implements OnInit {
     this.secureState$.subscribe(x=>{
       console.log(x);
     })
+    this.authState$.subscribe(x=>{
+      console.log(x);
+    })
   }
 
   onSignOut(){

@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { LoggedInGuard } from "ngx-auth-firebaseui";
 import { AppComponent } from "./app.component";
 import { SecureResolver } from "./data/store/secure-resolver";
 
