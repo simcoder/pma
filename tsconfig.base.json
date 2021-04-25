@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@pma/pma/secure": ["libs/pma/secure/src/index.ts"],
+      "@pma/shared": ["libs/shared/src/index.ts"],
+      "@pma/pma/dashboard": ["libs/pma/dashboard/src/index.ts"],
+      "@pma/auth": ["libs/auth/src/index.ts"],
+      "@pma/pma/admin": ["libs/pma/admin/src/index.ts"],
+      "@pma/pma/resident": ["libs/pma/resident/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

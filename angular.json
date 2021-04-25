@@ -47,7 +47,15 @@
             "polyfills": "apps/pma/src/polyfills.ts",
             "tsConfig": "apps/pma/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/pma/src/favicon.ico", "apps/pma/src/assets"],
+            "assets": [
+              "apps/pma/src/favicon.ico",
+              "apps/pma/src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-auth-firebaseui/assets/",
+                "output": "./assets/"
+              }
+            ],
             "styles": ["apps/pma/src/styles.scss"],
             "scripts": []
           },
@@ -55,8 +63,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/pma/src/environments/environment.ts",
-                  "with": "apps/pma/src/environments/environment.prod.ts"
+                  "replace": "libs/shared/src/lib/environments/pma/environment.ts",
+                  "with": "libs/shared/src/lib/environments/pma/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -139,6 +147,156 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/pma-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "pma-secure": {
+      "projectType": "library",
+      "root": "libs/pma/secure",
+      "sourceRoot": "libs/pma/secure/src",
+      "prefix": "pma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/pma/secure/src/**/*.ts",
+              "libs/pma/secure/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pma/secure"],
+          "options": {
+            "jestConfig": "libs/pma/secure/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared": {
+      "projectType": "library",
+      "root": "libs/shared",
+      "sourceRoot": "libs/shared/src",
+      "prefix": "pma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/src/**/*.ts",
+              "libs/shared/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared"],
+          "options": {
+            "jestConfig": "libs/shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pma-dashboard": {
+      "projectType": "library",
+      "root": "libs/pma/dashboard",
+      "sourceRoot": "libs/pma/dashboard/src",
+      "prefix": "pma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/pma/dashboard/src/**/*.ts",
+              "libs/pma/dashboard/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pma/dashboard"],
+          "options": {
+            "jestConfig": "libs/pma/dashboard/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "auth": {
+      "projectType": "library",
+      "root": "libs/auth",
+      "sourceRoot": "libs/auth/src",
+      "prefix": "pma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/auth/src/**/*.ts",
+              "libs/auth/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/auth"],
+          "options": {
+            "jestConfig": "libs/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pma-admin": {
+      "projectType": "library",
+      "root": "libs/pma/admin",
+      "sourceRoot": "libs/pma/admin/src",
+      "prefix": "pma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/pma/admin/src/**/*.ts",
+              "libs/pma/admin/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pma/admin"],
+          "options": {
+            "jestConfig": "libs/pma/admin/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pma-resident": {
+      "projectType": "library",
+      "root": "libs/pma/resident",
+      "sourceRoot": "libs/pma/resident/src",
+      "prefix": "pma",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/pma/resident/src/**/*.ts",
+              "libs/pma/resident/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pma/resident"],
+          "options": {
+            "jestConfig": "libs/pma/resident/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
