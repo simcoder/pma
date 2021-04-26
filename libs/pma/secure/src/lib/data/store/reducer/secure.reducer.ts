@@ -5,12 +5,14 @@ export interface State {
   hasLoaded: boolean;
   user: any;
   hasLoadedUser: boolean;
+  tenantLinked: boolean;
 }
 
 export const initialState: State = {
   menu: null,
   hasLoaded: false,
   user: null,
+  tenantLinked: false,
   hasLoadedUser: false,
 };
 
@@ -50,6 +52,16 @@ export function secureReducer(state: State, action: SecureActions) {
         hasLoadedUser: false,
         user: null,
       };
+      case SecureActionTypes.UPDATE_TENANT_SUCCESS:
+        return {
+          ...state,
+          tenantLinked: true
+        };
+      case SecureActionTypes.UPDATE_TENANT_FAILURE:
+        return {
+          ...state,
+          tenantLinked: false,
+        };
     default:
       return state;
   }

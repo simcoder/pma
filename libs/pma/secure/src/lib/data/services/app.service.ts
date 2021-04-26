@@ -64,11 +64,21 @@ export class AppService {
       );
   }
 
+
   updateUser(userUUID: string, updatedUser: any) {
     return from(this.db
       .collection("users")
       .doc(userUUID)
       .set(updatedUser)).pipe(
+        catchError((error: any) => Observable.throw(error.json()))
+      );
+  }
+
+  updateTenant(id: string, updatedTenant: any) {
+    return from(this.db
+      .collection("tenants")
+      .doc(id)
+      .set(updatedTenant)).pipe(
         catchError((error: any) => Observable.throw(error.json()))
       );
   }

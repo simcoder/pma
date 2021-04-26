@@ -25,8 +25,10 @@ export class MaintenanceEffects {
   @Effect({ dispatch: false })
   createTicket$ = this.action$.pipe(
     ofType(MaintenanceActionTypes.CREATE_TICKET),
-    switchMap((action: any) => {
-      return this.service.createTicket(action.ticket).pipe(
+    withLatestFrom(this.store.select(selectAuthState)),
+    switchMap(([action, user]:any) => {
+      const payload = {...action.ticket, userId: user.login.uid};
+      return this.service.createTicket(payload).pipe(
         map(() => {
           this.store.dispatch(new CreateTicketSuccess());
         }),

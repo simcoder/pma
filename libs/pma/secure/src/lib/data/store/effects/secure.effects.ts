@@ -6,6 +6,9 @@ import {
   LoadAppMenuSuccess,
   LoadAppUserSuccess,
   SecureActionTypes,
+  UpdateTenant,
+  UpdateTenantFailure,
+  UpdateTenantSuccess,
   UpdateUser,
   UpdateUserFailure,
   UpdateUserSuccess,
@@ -78,12 +81,31 @@ export class SecureEffects {
   );
 
   @Effect({ dispatch: false })
+  updateTenant$ = this.action$.pipe(
+    ofType(SecureActionTypes.UPDATE_TENANT),
+    switchMap((action: any) => {
+      return this.service.updateTenant(action.id, action.updatedTenant).pipe(
+        map((data) => {
+          this.store.dispatch(new UpdateTenantSuccess());
+          return EMPTY;
+        }),
+        catchError((error) => {
+          this.store.dispatch(new UpdateTenantFailure());
+          return of(error);
+        })
+      );
+    })
+  );
+
+  @Effect({ dispatch: false })
   linkTenant$ = this.action$.pipe(
     ofType(SecureActionTypes.LINK_TENANT_WITH_USER),
     switchMap((action: any) => {
       return this.service.getTenantById(action.tenantId).pipe(
-        map((data) => {
+        map((data:any) => {
          if(data){
+            const linkedTenant = {...data, userId: action.uid}
+            this.store.dispatch(new UpdateTenant(action.tenantId, linkedTenant));
             this.store.dispatch(new UpdateUser(action.uid, action.updatedUser));
          }
           return EMPTY;

@@ -10,6 +10,9 @@ export enum SecureActionTypes {
   UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS',
   UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE',
   UPDATE_USER = 'UPDATE_USER',
+  UPDATE_TENANT_SUCCESS = 'UPDATE_TENANT_SUCCESS',
+  UPDATE_TENANT_FAILURE = 'UPDATE_TENANT_FAILURE',
+  UPDATE_TENANT = 'UPDATE_TENANT',
   LINK_TENANT_WITH_USER = 'LINK TENANT WITH USER'
 }
 export class LoadAppMenuSuccess implements Action {
@@ -49,6 +52,17 @@ export class UpdateUserFailure implements Action {
   readonly type = SecureActionTypes.UPDATE_USER_FAILURE;
 }
 
+export class UpdateTenant implements Action {
+  readonly type = SecureActionTypes.UPDATE_TENANT;
+  constructor(public id: string, public updatedTenant: any) {}
+}
+export class UpdateTenantSuccess implements Action {
+  readonly type = SecureActionTypes.UPDATE_TENANT_SUCCESS;
+}
+export class UpdateTenantFailure implements Action {
+  readonly type = SecureActionTypes.UPDATE_TENANT_FAILURE;
+}
+
 export class LinkTenantWithUser implements Action {
   readonly type = SecureActionTypes.LINK_TENANT_WITH_USER;
   constructor(public uid: string, public updatedUser:any, public tenantId:string) {}
@@ -63,4 +77,7 @@ export type SecureActions =
   | UpdateUser
   | UpdateUserSuccess
   | UpdateUserFailure
-  | LinkTenantWithUser;
+  | LinkTenantWithUser
+  | UpdateTenantFailure
+  | UpdateTenantSuccess
+  | UpdateTenant;
