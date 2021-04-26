@@ -3,7 +3,6 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { select, Store } from '@ngrx/store';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { selectAuthState } from 'libs/auth/src/lib/data/store';
-import { LoadAppUser } from './data/store/actions/secure.actions';
 import { selectSecureState } from './data/store/selectors/secure.selectors';
 
 @Component({
@@ -17,9 +16,7 @@ export class AppComponent {
 
   hamburger: any = faBars;
   constructor(private store: Store<any>) {
-    this.authState$.subscribe((x) => {
-      this.store.dispatch(new LoadAppUser(x.login.uid));
-    });
+  
   }
 
   onSignOut() {

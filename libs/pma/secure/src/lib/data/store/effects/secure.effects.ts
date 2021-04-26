@@ -4,7 +4,6 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import {
   LoadAppMenuFailure,
   LoadAppMenuSuccess,
-  LoadAppUserSuccess,
   SecureActionTypes,
   UpdateTenant,
   UpdateTenantFailure,
@@ -44,24 +43,6 @@ export class SecureEffects {
       );
     })
   );
-
-  @Effect({ dispatch: false })
-  loadUser$ = this.action$.pipe(
-    ofType(SecureActionTypes.LOAD_APP_USER),
-    switchMap((action: any) => {
-      return this.service.getUserById(action.uuid).pipe(
-        map((data) => {
-          this.store.dispatch(new LoadAppUserSuccess(data));
-          return EMPTY;
-        }),
-        catchError((error) => {
-          this.store.dispatch(new LoadAppMenuFailure());
-          return of(error);
-        })
-      );
-    })
-  );
-
   @Effect({ dispatch: false })
   updateUser$ = this.action$.pipe(
     ofType(SecureActionTypes.UPDATE_USER),
@@ -116,13 +97,6 @@ export class SecureEffects {
         })
       );
     })
-  );
-
- 
-
-  //            this.store.dispatch(new UpdateUserSuccess(data));
-
-
-  //    
+  );   
 
 }
