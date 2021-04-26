@@ -12,3 +12,7 @@
   .balance {
       font-size: 40px;
   }
+  .wrapper{
+      display: grid;
+      grid-template-columns: repeat( 1, minmax(250px, 1fr) );
+  }

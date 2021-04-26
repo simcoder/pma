@@ -24,8 +24,7 @@ import { AvatarComponent } from './ui/components/avatar/avatar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './ui/components/registration/registration.component';
 import { ActivationSubPageComponent } from './ui/containers/activation-sub-page/activation-sub-page.component';
-import { AppGuardService } from './app.guard';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { AppDashboardGuardService } from './app.guard';
 import { authReducer } from '@pma/auth';
 @NgModule({
   imports: [
@@ -61,6 +60,6 @@ import { authReducer } from '@pma/auth';
     RegistrationComponent,
     ActivationSubPageComponent,
   ],
-  providers: [AngularFirestore, AppGuardService],
+  providers: [AngularFirestore, AppDashboardGuardService],
 })
 export class PmaSecureModule {}

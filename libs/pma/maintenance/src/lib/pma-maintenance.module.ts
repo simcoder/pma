@@ -16,6 +16,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MaintenanceEffects } from './data/store/effects/maintenance.effects';
 import { maintenanceReducer } from './data/store/reducers/maintenance.reducer';
+import {NgxImageCompressService} from 'ngx-image-compress';
 
 @NgModule({
   imports: [
@@ -36,6 +37,6 @@ import { maintenanceReducer } from './data/store/reducers/maintenance.reducer';
   ],
   declarations: [HomePageComponent, MaintenanceComponent],
   exports: [HomePageComponent, MaintenanceComponent],
-  providers: [AngularFirestore],
+  providers: [AngularFirestore, NgxImageCompressService],
 })
 export class PmaMaintenanceModule {}

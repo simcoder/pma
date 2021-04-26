@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "property-management-advisor"
+  },
+  "targets": {
+    "property-management-advisor": {
+      "hosting": {
+        "pma": [
+          "property-management-advisor"
+        ]
+      }
+    }
   }
 }

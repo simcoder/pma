@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import {
   CreateTicketFailure,
   CreateTicketSuccess,
@@ -10,7 +10,8 @@ import { EMPTY, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppService } from '../../services/app.service';
 import { Router } from '@angular/router';
-//import all requried services or any dependencies
+import { selectAuthState } from '@pma/auth';
+
 
 @Injectable()
 export class MaintenanceEffects {
@@ -40,8 +41,9 @@ export class MaintenanceEffects {
   @Effect({ dispatch: false })
   createTicketSuccess$ = this.action$.pipe(
     ofType(MaintenanceActionTypes.CREATE_TICKET_SUCCESS),
-    switchMap(() => {
-      this.router.navigate(["/secure/dashboard"])
+    withLatestFrom(this.store.select(selectAuthState)),
+    switchMap(([action, user]) => {
+      this.router.navigate([`/secure/dashboard`])
       return EMPTY;
     })
   );
