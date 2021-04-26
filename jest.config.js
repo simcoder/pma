@@ -5,7 +5,6 @@ module.exports = {
     '<rootDir>/libs/shared',
     '<rootDir>/libs/pma/dashboard',
     '<rootDir>/libs/auth',
-    '<rootDir>/libs/pma/admin',
-    '<rootDir>/libs/pma/resident',
+    '<rootDir>/libs/pma/maintenance',
   ],
 };

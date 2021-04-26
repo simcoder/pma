@@ -22,6 +22,14 @@ const routes: Routes = [
             ),
         },
         {
+          path: 'maintenance',
+          loadChildren: () =>
+            // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+            import('../../../maintenance/src/lib/pma-maintenance.module').then(
+              (m) => m.PmaMaintenanceModule
+            ),
+        },
+        {
           path: '', pathMatch: 'full', redirectTo: 'dashboard'
         }
       ],

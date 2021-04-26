@@ -251,51 +251,26 @@
         }
       }
     },
-    "pma-admin": {
+    "pma-maintenance": {
       "projectType": "library",
-      "root": "libs/pma/admin",
-      "sourceRoot": "libs/pma/admin/src",
+      "root": "libs/pma/maintenance",
+      "sourceRoot": "libs/pma/maintenance/src",
       "prefix": "pma",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/pma/admin/src/**/*.ts",
-              "libs/pma/admin/src/**/*.html"
+              "libs/pma/maintenance/src/**/*.ts",
+              "libs/pma/maintenance/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/pma/admin"],
+          "outputs": ["coverage/libs/pma/maintenance"],
           "options": {
-            "jestConfig": "libs/pma/admin/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "pma-resident": {
-      "projectType": "library",
-      "root": "libs/pma/resident",
-      "sourceRoot": "libs/pma/resident/src",
-      "prefix": "pma",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/pma/resident/src/**/*.ts",
-              "libs/pma/resident/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/pma/resident"],
-          "options": {
-            "jestConfig": "libs/pma/resident/jest.config.js",
+            "jestConfig": "libs/pma/maintenance/jest.config.js",
             "passWithNoTests": true
           }
         }

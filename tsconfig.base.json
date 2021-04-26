@@ -19,8 +19,7 @@
       "@pma/shared": ["libs/shared/src/index.ts"],
       "@pma/pma/dashboard": ["libs/pma/dashboard/src/index.ts"],
       "@pma/auth": ["libs/auth/src/index.ts"],
-      "@pma/pma/admin": ["libs/pma/admin/src/index.ts"],
-      "@pma/pma/resident": ["libs/pma/resident/src/index.ts"]
+      "@pma/pma/maintenance": ["libs/pma/maintenance/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

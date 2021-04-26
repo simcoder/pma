@@ -18,7 +18,6 @@
     "shared": { "tags": [] },
     "pma-dashboard": { "tags": [] },
     "auth": { "tags": [] },
-    "pma-admin": { "tags": [] },
-    "pma-resident": { "tags": [] }
+    "pma-maintenance": { "tags": [] }
   }
 }

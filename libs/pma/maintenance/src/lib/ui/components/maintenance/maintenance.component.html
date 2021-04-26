@@ -1,0 +1,55 @@
+<form [formGroup]="maintenanceTickerForm">
+  <div class="row__center button_row">
+    <mat-form-field>
+      <div>
+        <mat-toolbar>
+          <!-- Display files names -->
+          <input placeholder="Select File" matInput readonly name="name" />
+
+          <!-- Browse Button -->
+          <button mat-flat-button color="primary">Browse File</button>
+        </mat-toolbar>
+
+        <!-- Fetch selected filed on change -->
+        <input
+         formControlName="fileSelector" 
+          type="file"
+          #fileInput
+          id="uploadFile"
+          (change)="uploadFileEvt($event)"
+          name="uploadFile"
+          multiple="multiple"
+          accept="image/*"
+        />
+        <input matInput disabled value="Google">
+      </div>
+    </mat-form-field>
+  </div>
+  <div class="row__center" *ngIf="ready">
+    <ng-container *ngFor="let thumb of thumbNails">
+      <img class="thumb" [src]="thumb" />
+    </ng-container>
+    
+  </div>
+  <div class="row__center">
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type" >
+        <mat-option *ngFor="let type of types" [value]="type.value">
+          {{ type.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="row__center">
+    <mat-form-field class="example-full-width">
+      <mat-label>Additional Information</mat-label>
+      <textarea formControlName="additionalInfo" matInput placeholder="Ex. I got a leaky faucet"></textarea>
+    </mat-form-field>
+  </div>
+  <div class="row__center button_row">
+    <button (click)="submit()" type="button" mat-raised-button color="primary">
+      <span>submit a ticket</span>
+    </button>
+  </div>
+</form>
