@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import _ from 'lodash';
 
@@ -37,5 +37,42 @@ export class AppService {
         catchError((error: any) => Observable.throw(error.json()))
       );
   }
+
+  getTenantById(tenantId: string){
+    return this.db
+      .collection("tenants")
+      .doc(tenantId)
+      .get()
+      .pipe(
+        map(resp => {
+          return resp.data();
+        }),
+        catchError((error: any) => Observable.throw(error.json()))
+      );
+  }
+
+  getUserById(userUUID: string): Observable<any>{
+    return this.db
+      .collection("users")
+      .doc(userUUID)
+      .get()
+      .pipe(
+        map(resp => {
+          return resp.data();
+        }),
+        catchError((error: any) => Observable.throw(error.json()))
+      );
+  }
+
+  updateUser(userUUID: string, updatedUser: any) {
+    return from(this.db
+      .collection("users")
+      .doc(userUUID)
+      .set(updatedUser)).pipe(
+        catchError((error: any) => Observable.throw(error.json()))
+      );
+  }
+
+ 
 
 }

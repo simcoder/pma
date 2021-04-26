@@ -1,23 +1,23 @@
-import { AuthActions, AuthActionTypes } from "../actions/auth.actions";
+import { AuthActions, AuthActionTypes } from '../actions/auth.actions';
 
 export interface State {
-    user: any;
-};
+  login: any;
+  hasUserBeenLoaded: boolean;
+}
 
 export const initialState = {
-    user : null
+  hasUserBeenLoaded: false,
+  login: null
 };
 
-
 export function authReducer(state: State, action: AuthActions) {
-    switch (action.type) {
-        case AuthActionTypes.USER_LOGIN_SUCCESS:
-            return {
-                ...state,
-                user: action.payload
-            }    
-        default:
-            return state
-    }
-   
+  switch (action.type) {
+    case AuthActionTypes.USER_LOGIN_SUCCESS:
+      return {
+        ...state,
+        login: action.payload,
+      };
+    default:
+      return state;
+  }
 }

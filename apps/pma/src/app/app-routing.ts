@@ -6,7 +6,9 @@ import {LoggedInGuard} from 'ngx-auth-firebaseui';
 
 const routes: Routes = [
     {
+      //path: 'secure/:uuid',
       path: 'secure',
+
       // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
       loadChildren: () => import('../../../../libs/pma/secure/src/lib/pma-secure.module').then(m => m.PmaSecureModule),
       canActivate: [LoggedInGuard]

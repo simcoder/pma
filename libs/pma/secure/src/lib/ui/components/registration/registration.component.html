@@ -1,0 +1,14 @@
+<form [formGroup]="registrationForm">
+  <div class="row__center">
+    <mat-form-field>
+      <mat-label>TenantId></mat-label>
+      <input
+         formControlName="tenantId"  matInput placeholder="Tenant Id" />
+    </mat-form-field>
+  </div>
+  <div class="row__center button_row">
+    <button (click)="submit()" type="button" mat-raised-button color="primary">
+      <span>Activate Resident Portal</span>
+    </button>
+  </div>
+</form>

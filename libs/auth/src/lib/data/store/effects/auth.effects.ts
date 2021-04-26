@@ -9,21 +9,24 @@ import { AuthActionTypes, UserLoginSuccess } from '../actions/auth.actions';
 
 @Injectable()
 export class AuthEffects {
-    constructor(private action$: Actions, private service: AuthService, private store: Store<any>) { }
+  constructor(
+    private action$: Actions,
+    private service: AuthService,
+    private store: Store<any>
+  ) {}
 
-    @Effect({dispatch:false})
-    loginUser$ = this.action$.pipe(
-        ofType(AuthActionTypes.USER_LOGIN),
-        switchMap(() => {
-            return this.service.getAuth().pipe(
-                map(data => {
-                    this.store.dispatch(new UserLoginSuccess(data));
-                    return
-                }),
-                catchError(error => {
-                    return of(error);
-                })
-            );
+  @Effect({ dispatch: false })
+  loginUserREq$ = this.action$.pipe(
+    ofType(AuthActionTypes.USER_LOGIN),
+    switchMap(() => {
+      return this.service.getAuth().pipe(
+        map((data) => {
+          this.store.dispatch(new UserLoginSuccess(data));
+        }),
+        catchError((error) => {
+          return of(error);
         })
-    );
+      );
+    })
+  );
 }

@@ -1,7 +1,9 @@
 <div class="maint">
   <h1>Maintenance</h1>
   <div>
-    <pma-maintenance (ticketSubmit)="onTicketSubmit($event)" ></pma-maintenance>
+    <pma-maintenance
+      [tenantId]="(authState$ | async)?.user?.user?.tenantId"
+      (ticketSubmit)="onTicketSubmit($event)"
+    ></pma-maintenance>
   </div>
 </div>
-

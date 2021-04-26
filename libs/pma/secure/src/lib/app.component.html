@@ -20,7 +20,7 @@
                 <div class="notification">
                 </div>
                 <div>
-                  <pma-avatar [user]="(authState$ | async)?.user" (signOut)="onSignOut()"></pma-avatar>
+                  <pma-avatar [user]="(authState$ | async)?.login" (signOut)="onSignOut()"></pma-avatar>
                 </div>
               </div>
             </div>

@@ -15,6 +15,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './data/store/effects/auth.effects';
+import { AngularFirestore } from '@angular/fire/firestore';
 export function firebaseAppNameFactory() {
   return `goc`;
 }
@@ -49,8 +50,8 @@ export const routes: Route[] = [
     EffectsModule.forFeature([AuthEffects])
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers:[AngularFireAuth],
+  providers:[AngularFireAuth, AngularFirestore],
   declarations: [AppComponent, LoginComponent],
-  exports: [AppComponent, LoginComponent],
+  exports: [AppComponent, LoginComponent]
 })
 export class AuthModule {}

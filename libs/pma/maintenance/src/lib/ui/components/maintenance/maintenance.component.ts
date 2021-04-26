@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./maintenance.component.scss']
 })
 export class MaintenanceComponent {
+  @Input() tenantId: string;
   @Output() ticketSubmit = new EventEmitter<any>();
 
   @ViewChild('fileInput') fileInput: ElementRef;
@@ -17,7 +18,8 @@ export class MaintenanceComponent {
       type: [""],
       additionalInfo: [""],
       fileSelector: [""],
-      pics:[]
+      pics:[],
+      tenantId:[""]
     });
   }
 
@@ -59,6 +61,7 @@ export class MaintenanceComponent {
 
   submit(){
     this.maintenanceTickerForm.controls["pics"].setValue(this.thumbNails);
+    this.maintenanceTickerForm.controls["tenantId"].setValue(this.tenantId);
     this.ticketSubmit.emit(this.maintenanceTickerForm);
   }
 

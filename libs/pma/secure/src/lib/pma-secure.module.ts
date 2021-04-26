@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './pma-secure.routing';
-import { AuthModule } from '@pma/auth';
 import { StoreModule } from '@ngrx/store';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { secureReducer } from './data/store/reducer/secure.reducer';
@@ -22,6 +21,12 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AvatarComponent } from './ui/components/avatar/avatar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegistrationComponent } from './ui/components/registration/registration.component';
+import { ActivationSubPageComponent } from './ui/containers/activation-sub-page/activation-sub-page.component';
+import { AppGuardService } from './app.guard';
+import { ActivatedRouteSnapshot } from '@angular/router';
+import { authReducer } from '@pma/auth';
 @NgModule({
   imports: [
     CommonModule,
@@ -34,21 +39,28 @@ import { AvatarComponent } from './ui/components/avatar/avatar.component';
     MatSelectModule,
     MatInputModule,
     MatMenuModule,
-    // MatPagesModule.forRoot(),
     MatIconModule,
-    // MatBadgeModule,
     FontAwesomeModule,
     MatListModule,
     MatDividerModule,
-
-
     AppRoutingModule,
-    AuthModule,
+    ReactiveFormsModule,
     StoreModule.forFeature('secure', secureReducer),
+    StoreModule.forFeature('auth', authReducer),
     EffectsModule.forFeature([SecureEffects]),
   ],
-  declarations: [AppComponent, AvatarComponent],
-  exports: [AppComponent, AvatarComponent],
-  providers: [AngularFirestore],
+  declarations: [
+    AppComponent,
+    AvatarComponent,
+    RegistrationComponent,
+    ActivationSubPageComponent,
+  ],
+  exports: [
+    AppComponent,
+    AvatarComponent,
+    RegistrationComponent,
+    ActivationSubPageComponent,
+  ],
+  providers: [AngularFirestore, AppGuardService],
 })
 export class PmaSecureModule {}
